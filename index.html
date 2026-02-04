@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Private Data Analysis</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f0f2f5; color: #333; margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; transition: 0.5s; }
+        header { width: 100%; background: #2c3e50; color: white; padding: 15px 0; text-align: center; font-size: 12px; letter-spacing: 1px; }
+        .main-container { width: 90%; max-width: 450px; background: #fff; margin: 30px 0; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-top: 6px solid #e74c3c; position: relative; z-index: 10; }
+        h2 { font-size: 22px; color: #1a1a1a; margin-bottom: 10px; }
+        input { width: 100%; padding: 14px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; box-sizing: border-box; background: #f9f9f9; }
+        .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        .opt-btn { padding: 15px; background: #f8f9fa; border: 2px solid #eee; cursor: pointer; border-radius: 10px; font-weight: 600; }
+        .opt-btn.active { background: #27ae60; color: #fff; border-color: #2ecc71; }
+        .main-btn { width: 100%; padding: 15px; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 18px; font-weight: bold; margin-top: 15px; }
+        footer { width: 90%; max-width: 450px; font-size: 11px; color: #888; text-align: center; padding: 20px 0; border-top: 1px solid #ddd; }
+
+        /* শেষের পৃষ্ঠার এনিমেশন ও ডিজাইন */
+        #final-screen { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #ff0000; z-index: 9999; flex-direction: column; justify-content: center; align-items: center; }
+        .white-card { background: #fff; width: 85%; max-width: 400px; padding: 40px 20px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.3); text-align: center; }
+        
+        .finger-animation { font-size: 100px; display: inline-block; animation: moveUpDown 1.5s infinite ease-in-out; }
+        
+        @keyframes moveUpDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+
+        .final-text-red { color: #000; font-size: 28px; font-weight: 900; margin: 20px 0 10px 0; }
+        .sub-text { color: #333; font-size: 18px; font-weight: bold; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<header id="h-part">YOU ARE A CHIP MATHER FUCKER// STATUS: ONLINE BUKACHUDA</header>
+
+<div class="main-container" id="app">
+    <div id="home">
+        <h2>তোর সকল খবর জানি🔍</h2>
+        <p style="font-size: 14px; color: #666;">আমাদের AI সিস্টেম আপনার গোপন তথ্য বের করতে সক্ষম। নিচের তথ্যগুলো দিন।</p>
+        <div style="background: #fff3cd; padding: 10px; border-radius: 5px; font-size: 13px; font-weight: bold; margin-bottom: 15px;">🎁 শেষে আপনার জন্য গিফট অপেক্ষা করছে!</div>
+        <input type="text" id="name" placeholder="আপনার পূর্ণ নাম">
+        <input type="number" id="age" placeholder="আপনার বয়স">
+        <button class="main-btn" onclick="startSystem()"> গোপন তথ্য দেখুন</button>
+    </div>
+</div>
+
+<footer id="f-part">©২০২৬ Moniruzzaman Maruf | সর্বস্বত্ব সংরক্ষিত। <br>
+সতর্কবার্তা: এটি কোনো ক্ষতিকারক বা বিপদজনক ওয়েবসাইট নয়। এটি শুধুমাত্র বন্ধুদের সাথে মজা করার উদ্দেশ্যে তৈরি একটি প্র্যাঙ্ক ওয়েবসাইট। এখানে আপনার কোনো ব্যক্তিগত তথ্য (Data) সংগ্রহ বা সংরক্ষণ করা হয় না। তাই নিশ্চিন্তে মজা নিন এবং বন্ধুদের সাথে শেয়ার করুন!</footer>
+
+<div id="final-screen">
+    <div class="white-card">
+        <div class="finger-animation">🖕</div>
+        <div class="final-text-red">বোকাচোদা Fuck You!</div>
+        <div style="font-size: 40px; margin-bottom: 15px;">😂</div>
+        <div class="sub-text">এগুলো প্রশ্নের উত্তর কি কেউ দেয় সালা বাইনচোদ তুই আসলেই একটা বলদ এতো সময় নষ্ট করলি কেন? </div>
+        <p style="color: #666; font-size: 14px; line-height: 1.4;">ভবিষ্যৎ আর গোপন খবর জানতে আসছিস পাগল? যা ভাগ <b><span id="target-name"></span></b>!</p>
+        <button class="main-btn" onclick="location.reload()" style="background: #000; color: #fff; border-radius: 5px; width: 80%;">যাহ শালা!</button>
+    </div>
+</div>
+
+<script>
+    let step = 0;
+    let userName = "";
+
+    function startSystem() {
+        userName = document.getElementById('name').value;
+        if (!userName) return alert("আগে নামটা লেখেন!");
+        runQuiz();
+    }
+
+    function runQuiz() {
+        const questions = [
+            { q: `${userName}, সত্যি করে বল দিনে কয় বার হাত মারিস?`, a: ["২ বার", "৫ বার", "অজস্র বার", "কি বলিস এইসব"] },
+            { q: `কয়টা মেয়ের জীবন খাইলি এ পর্যন্ত?`, a: ["৫-১০ টা", "গোনা অসম্ভব", "আমি মাসুম", "খালি হাতে মারি"] },
+            { q: `প্যান্টের চেইন খোলা থাকলে কী করিস?`, a: ["খুশিতে হাত মারি", "মানুষকে দেখাই", "মেয়েকে দেখায় ", "খোলাই রাখি"] },
+            { q: `লুকিয়ে কার প্রোফাইল বেশি দেখিস?`, a: ["ক্রাশের", "পড়শীর ভাবীর", "সেক্সী ম্যাডামের", "বন্ধুর গার্লফ্রেন্ড"] },
+            { q: `মাঝে মাঝে কি লুঙ্গি খুলে ড্যান্স দিতে ইচ্ছা করে?`, a: ["হ্যাঁ", "মাঝে মাঝে", "শুধু বাথরুমে", "আমি উলঙ্গ থাকি"] },
+            { q: `তুই কি জানিস তুই একটা আস্ত বোকাচোদা?`, a: ["জি জানি", "জ্বি অবশ্যই", "হাগু খাই আমি", "গিফটটা দে সালা"] }
+        ];
+
+        if (step < questions.length) {
+            document.getElementById('app').innerHTML = `
+                <div style="font-size: 11px; color: #e74c3c; font-weight: bold;">ধাপ: ${step + 1} / 6</div>
+                <h3 style="font-size: 18px; line-height: 1.4;">${questions[step].q}</h3>
+                <div class="btn-grid">
+                    <button class="opt-btn" onclick="select(this)">${questions[step].a[0]}</button>
+                    <button class="opt-btn" onclick="select(this)">${questions[step].a[1]}</button>
+                    <button class="opt-btn" onclick="select(this)">${questions[step].a[2]}</button>
+                    <button class="opt-btn" onclick="select(this)">${questions[step].a[3]}</button>
+                </div>
+                <p style="margin-top:20px; font-size:12px; color:#e67e22; font-weight:bold;">🎁 গিফট আনলক হচ্ছে...</p>
+            `;
+            step++;
+        } else {
+            finish();
+        }
+    }
+
+    function select(btn) {
+        btn.classList.add('active');
+        btn.innerText = "✅ " + btn.innerText;
+        setTimeout(runQuiz, 600);
+    }
+
+    function finish() {
+        document.getElementById('app').style.display = 'none';
+        document.getElementById('h-part').style.display = 'none';
+        document.getElementById('f-part').style.display = 'none';
+        
+        document.getElementById('target-name').innerText = userName;
+        document.getElementById('final-screen').style.display = 'flex';
+
+        // --- অডিও সেকশন ---
+        let myAudio = new Audio('Ok.mp3'); 
+        myAudio.loop = true; // অডিওটি বারবার চলার জন্য লুপ অন করা হয়েছে
+        myAudio.play();
+
+        // ভয়েস মেসেজ (Text-to-Speech)
+        let msg = new SpeechSynthesisUtterance();
+        msg.text = "Fuck you! Tooi ekta buka chuda";
+        msg.rate = 0.9;
+        window.speechSynthesis.speak(msg);
+
+        // হাসির শব্দ
+        new Audio('https://www.soundjay.com/human/sounds/laughter-01.mp3').play();
+    }
+</script>
+
+</body>
+</html>
